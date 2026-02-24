@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
+use App\Http\Controllers\AgentController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,6 +15,6 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::post('Invoke-agent', [AgentController::class, 'callAgent'])->name('invoke.agent');
+Route::post('invoke-agent', [AgentController::class, 'callAgent'])->name('invoke.agent');
 
 require __DIR__.'/settings.php';

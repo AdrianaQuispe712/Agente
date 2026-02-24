@@ -25,9 +25,9 @@ class ListProductTool implements Tool
     {
         $category = $request['category']??null;
 
-        $products = Product::when($category, callback: function(Builder $query) use ($category){
-            $query->whereHas('categories', function(Builder <TRelatedModel>$query) use ($category): void{
-                $query->where('title', $category);
+        $products = Product::when(value: $category, callback: function(Builder $query) use($category){
+            $query->whereHas(relation: 'categories', callback: function(Builder<TRelatedModel> $query) use($category): void{
+                $query->where(column: 'title', operator: $category);
             });
         })->get();
 

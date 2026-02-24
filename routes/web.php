@@ -14,4 +14,6 @@ Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('Invoke-agent', [AgentController::class, 'callAgent'])->name('invoke.agent');
+
 require __DIR__.'/settings.php';

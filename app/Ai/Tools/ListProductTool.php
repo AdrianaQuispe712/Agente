@@ -6,7 +6,9 @@ use Illuminate\Contracts\JsonSchema\JsonSchema;
 use Laravel\Ai\Contracts\Tool;
 use Laravel\Ai\Tools\Request;
 use Stringable;
-use function PHPUnit\Framework\callback;
+use App\Models\Product;
+// use function PHPUnit\Framework\callback;
+use Illuminate\Database\Query\Builder;
 
 class ListProductTool implements Tool
 {
@@ -23,15 +25,15 @@ class ListProductTool implements Tool
      */
     public function handle(Request $request): Stringable|string
     {
-        $category = $request['category']??null;
+        $category = $request['category'] ?? null;
 
-        $products = Product::when(value: $category, callback: function(Builder $query) use($category){
-            $query->whereHas(relation: 'categories', callback: function(Builder<TRelatedModel> $query) use($category): void{
-                $query->where(column: 'title', operator: $category);
+        $products = Product::when($category, function (Builder $query) use ($category) {
+            $query->whereHas('categories', function (Builder $query) use ($category) {
+                $query->where('title', $category);
             });
         })->get();
 
-        return $products;
+        return $products->toJson();
     }
 
     /**

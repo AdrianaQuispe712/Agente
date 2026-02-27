@@ -107,7 +107,7 @@ return [
 
         'openai' => [
             'driver' => 'openai',
-            'key' => env('OPENAI_API_KEY'),
+            'key' => env('OPENAI_KEY'),
         ],
 
         'openrouter' => [

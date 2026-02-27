@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { SidebarProvider } from '@/components/ui/sidebar';
-import ChatWindow from '@/components/chat-window.vue';
+import ChatWindow from '@/components/Chat-window.vue';
 import type { AppShellVariant } from '@/types';
 
 type Props = {

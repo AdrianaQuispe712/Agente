@@ -21,7 +21,7 @@ function handleSend() {
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     })
 
-    fetch('/Invoke-agent', {
+    fetch('/invoke-agent', {
         method: 'POST',
         body: JSON.stringify({ message: message.value }),
         headers: {

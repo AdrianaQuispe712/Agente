@@ -21,6 +21,7 @@ class SalesAssistan implements Agent, Conversational, HasTools
      * Get the instructions that the agent should follow.
      */
 
+    protected User $user;
 
     public function __construct(User $user)
     {
@@ -35,7 +36,7 @@ class SalesAssistan implements Agent, Conversational, HasTools
     /**
      * Get the list of messages comprising the conversation so far.
      */
-    
+
     public function messages(): iterable
     {
         return [];
@@ -51,7 +52,7 @@ class SalesAssistan implements Agent, Conversational, HasTools
         return [
             new ListProductTool,
             new ListCategoryTool,
-            new ListOrderToolForUser,
+            new ListOrderToolForUser($this->user),
         ];
     }
 }

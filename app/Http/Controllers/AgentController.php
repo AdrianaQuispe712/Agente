@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Ai\Agents\SalesAssistant;
+use App\Ai\Agents\SalesAssistan;
 use Illuminate\Http\Request;
 
 class AgentController extends Controller
@@ -13,8 +13,7 @@ class AgentController extends Controller
             'message' => ['required']
         ]);
 
-        $response = (new SalesAssistant(auth()->user()))->forUser(auth()->user())
-                    ->prompt($validated['message']);
+        $response = (new SalesAssistan(auth()->user()))->prompt($validated['message']);
 
         return (string) $response;
     }
